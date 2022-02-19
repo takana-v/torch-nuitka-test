@@ -1,2 +1,2 @@
-nuitka @ git+https://github.com/takana-v/Nuitka@35ba88bddbead4c0390de78a366254208dbf3973
+nuitka==0.6.19.7
 torch==1.10.2

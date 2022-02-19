@@ -27,6 +27,7 @@ jobs:
             --standalone \
             --assume-yes-for-downloads \
             --plugin-enable=torch \
+            --user-plugin=FixTorchBuildPlugin.py \
             --msvc=14.2 \
             --follow-imports \
             --no-prefer-source-code \

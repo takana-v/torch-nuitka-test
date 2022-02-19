@@ -35,4 +35,4 @@ jobs:
       - name: test main.exe
         shell: bash
         working-directory: main.dist
-        run: main.exe
+        run: ./main.exe

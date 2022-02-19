@@ -1,0 +1,38 @@
+name: build
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-windows:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+          architecture: 'x64'
+
+      - name: install nuitka and torch
+        shell: bash
+        run: python -m pip install -r requirements.txt
+
+      - name: build main.py
+        shell: bash
+        run: |
+          python -m nuitka \
+            --standalone \
+            --assume-yes-for-downloads \
+            --plugin-enable=torch \
+            --msvc=14.2 \
+            --follow-imports \
+            --no-prefer-source-code \
+            main.py
+
+      - name: test main.exe
+        shell: bash
+        working-directory: main.dist
+        run: main.exe
